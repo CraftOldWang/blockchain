@@ -74,8 +74,52 @@ Arguments:
  *       path, casted to string-represented integers ("0" or "1").
  */
 function computeInput(depth, transcript, nullifier) {
-    // TODO
-    return {};
+    // Build the Merkle tree
+    const tree = new SparseMerkleTree(depth);
+    
+    // Track the nonce for our target nullifier
+    let targetNonce = null;
+    let targetCoin = null;
+    
+    // Process each coin in the transcript
+    for (const entry of transcript) {
+        let coin;
+        if (entry.length === 1) {
+            // Single value = already computed coin
+            coin = entry[0];
+        } else {
+            // Two values = [nullifier, nonce], compute the coin
+            const entryNullifier = entry[0];
+            const entryNonce = entry[1];
+            coin = mimc2(entryNullifier, entryNonce);
+            
+            // Check if this is our target nullifier
+            if (entryNullifier === nullifier) {
+                targetNonce = entryNonce;
+                targetCoin = coin;
+            }
+        }
+        tree.insert(coin);
+    }
+    
+    // Get the Merkle path for our coin
+    const path = tree.path(targetCoin);
+    
+    // Build the result object
+    const result = {
+        "digest": tree.digest,
+        "nullifier": nullifier,
+        "nonce": targetNonce
+    };
+    
+    // Add sibling and direction entries
+    for (let i = 0; i < depth; i++) {
+        const [sibling, direction] = path[i];
+        result[`sibling[${i}]`] = sibling;
+        result[`direction[${i}]`] = direction ? "1" : "0";
+    }
+    
+    return result;
 }
 
 module.exports = { computeInput };

@@ -1,0 +1,12 @@
+customer1
+Private key: cPzeci19UuZ4csPvkGGiNPj18y33URUVr8CnhnG64RtSZFRUDWyd
+Address: mmzmn7MGymiEWy8L6qikc29answPMVKYtC
+
+cust2
+Private key: cVRUwWbRomePHZJdZb1drKbDsEBPy3HzY9m6pB5ELdvMatQ7ccao
+Address: n4jBEUig5MgswkCfyVCBEesBijjHQr5hMj
+
+
+cust3
+Private key: cQmQxPPED37m9fyUShipXwMCeWJ6UqTGMPzUTm9VUbZgCdYUodkM
+Address: mzncJCfjAVhDYo3XJ9hTncL1j7ByZWFi5N

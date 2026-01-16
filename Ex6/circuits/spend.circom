@@ -13,8 +13,14 @@ template IfThenElse() {
     signal input false_value;
     signal output out;
 
-    // TODO
-    // Hint: You will need a helper signal...
+    // Enforce that condition is 0 or 1
+    condition * (1 - condition) === 0;
+
+    // out = condition * true_value + (1 - condition) * false_value
+    // Need a helper signal because we can't multiply two signals directly in output
+    signal helper;
+    helper <== condition * true_value;
+    out <== helper + false_value - condition * false_value;
 }
 
 /*
@@ -31,7 +37,21 @@ template SelectiveSwitch() {
     signal output out0;
     signal output out1;
 
-    // TODO
+    // Use IfThenElse to implement the switch
+    // When s=0: out0=in0, out1=in1
+    // When s=1: out0=in1, out1=in0
+    component ite0 = IfThenElse();
+    component ite1 = IfThenElse();
+
+    ite0.condition <== s;
+    ite0.true_value <== in1;
+    ite0.false_value <== in0;
+    out0 <== ite0.out;
+
+    ite1.condition <== s;
+    ite1.true_value <== in0;
+    ite1.false_value <== in1;
+    out1 <== ite1.out;
 }
 
 /*
@@ -55,5 +75,37 @@ template Spend(depth) {
     signal private input sibling[depth];
     signal private input direction[depth];
 
-    // TODO
+    // Compute the coin: H(nullifier, nonce)
+    component coinHash = Mimc2();
+    coinHash.in0 <== nullifier;
+    coinHash.in1 <== nonce;
+
+    // Store intermediate hash values along the Merkle path
+    signal pathHash[depth + 1];
+    pathHash[0] <== coinHash.out;
+
+    // Components for selective switching and hashing at each level
+    component switches[depth];
+    component hashers[depth];
+
+    // Traverse the Merkle path from leaf to root
+    for (var i = 0; i < depth; i++) {
+        // Use SelectiveSwitch to order the pair correctly
+        // direction[i] = 0 means sibling is on right, so current is left
+        // direction[i] = 1 means sibling is on left, so current is right
+        switches[i] = SelectiveSwitch();
+        switches[i].in0 <== pathHash[i];
+        switches[i].in1 <== sibling[i];
+        switches[i].s <== direction[i];
+
+        // Hash the pair: Mimc2(left, right)
+        hashers[i] = Mimc2();
+        hashers[i].in0 <== switches[i].out0;
+        hashers[i].in1 <== switches[i].out1;
+
+        pathHash[i + 1] <== hashers[i].out;
+    }
+
+    // The final hash must equal the digest
+    digest === pathHash[depth];
 }
