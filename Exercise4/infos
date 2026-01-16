@@ -1,0 +1,32 @@
+
+Alice 
+testnet
+Private key: cTJ75APUpx74becY74XtzFNUkgtkBSXibe6o1Cza6QZtNVtwmx9D
+Address: mkX6xfb4k8sKQs1NvyoD7Qgu9k1F3J343Q
+bcy
+{
+  "private": "e43053d544966437f0f1ee011c5cb4514cf7178d3c0d47e511038f72e09909b3",
+  "public": "0324db349c7af673be4f98cec975092f650b981cf3d425c5ae8661891ea8e88e98",
+  "address": "C1idFVGKus5HNB3xWPfquYNdmTVGuhe6Yk",
+  "wif": "BvybkTsuM1VVDcBkvFpnnCfAtjos5WLYvuKD17wLvfiup2mxe93r"
+}
+
+
+Bob
+testnet
+Private key: cUfA2qDWxuYhEVXcrTzZrmohCqhJhnwcKxduFHoQ8GtNw4xQqPHM
+Address: mxXBpwWUi4ZdExNune9JxrchYnjhfmdtGe
+
+bcy
+{
+  "private": "971dd73fb5e4b17efd472b2839db3227f050e6f03233f0da9ac3f7536662a5ca",
+  "public": "03cab429d20f6e79c2c9cf85fae0fa75f8ec074ac202aa661830eb88bf53ae8e9e",
+  "address": "Bzkz8GiU26qAigD6VYcLkPv2h4Ly6iW2hE",
+  "wif": "BtPnHfStDRVXTqQU8kGjKhien3WtY6pUdor8ERXQ235k43MMQRpb"
+}
+
+bob领取的BCY币
+{
+  "tx_ref": "21a60c4abf94ebefab2723360a66b7fee37a7b0380e082d0723181505dec245b"
+}
+

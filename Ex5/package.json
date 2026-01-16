@@ -1,0 +1,13 @@
+{
+  "name": "blockchain-splitwise-ex5",
+  "version": "1.0.0",
+  "description": "Deployment and test scripts for Blockchain Splitwise exercise",
+  "main": "deploy_and_test.js",
+  "scripts": {
+    "test-deploy": "node deploy_and_test.js"
+  },
+  "dependencies": {
+    "solc": "^0.4.26",
+    "web3": "^1.10.0"
+  }
+}

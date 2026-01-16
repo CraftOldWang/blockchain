@@ -1,0 +1,45 @@
+(.venv) craftoldw@ACG5p-CraftOldW:~/1learningoutput/BlockChain/Ex1$ python3 ex3b.py 
+201 Created
+{
+  "tx": {
+    "block_height": -1,
+    "block_index": -1,
+    "hash": "d5500f3462a5d522d20b0f57023e66e19d4fefa91a7748ddab3431ce9275f351",
+    "addresses": [
+      "mv4rnyY3Su5gjcDNzbMLKBQkBicCtHUtFB"
+    ],
+    "total": 9000,
+    "fees": 1000,
+    "size": 95,
+    "vsize": 95,
+    "preference": "low",
+    "relayed_by": "66.90.98.10",
+    "received": "2025-10-18T13:04:06.784249215Z",
+    "ver": 1,
+    "double_spend": false,
+    "vin_sz": 1,
+    "vout_sz": 1,
+    "confirmations": 0,
+    "inputs": [
+      {
+        "prev_hash": "2061c6bc821c880d03a402c9ad57f8a47142d67379fe753e33e5bbd76cef75a2",
+        "output_index": 0,
+        "script": "0415494612044d1bb68b",
+        "output_value": 10000,
+        "sequence": 4294967295,
+        "script_type": "unknown",
+        "age": 4737179
+      }
+    ],
+    "outputs": [
+      {
+        "value": 9000,
+        "script": "76a9149f9a7abd600c0caa03983a77c8c3df8e062cb2fa88ac",
+        "addresses": [
+          "mv4rnyY3Su5gjcDNzbMLKBQkBicCtHUtFB"
+        ],
+        "script_type": "pay-to-pubkey-hash"
+      }
+    ]
+  }
+}
